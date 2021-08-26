@@ -30,4 +30,8 @@ public class LiftService {
         return floorTo - floorFrom;
     }
 
+    public String getDirectionArrows(Lift lift) {
+        return lift.getDirection();
+    }
+
 }
