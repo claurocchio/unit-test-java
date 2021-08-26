@@ -1,0 +1,13 @@
+package com.adp.test;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class LiftTestApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(LiftTestApplication.class, args);
+	}
+
+}
