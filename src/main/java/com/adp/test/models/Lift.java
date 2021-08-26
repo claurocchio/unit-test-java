@@ -9,6 +9,7 @@ public class Lift {
 
     int currentFloor;
     int destinationFloor;
+    int floorsToMove;
     String direction;
 
 }

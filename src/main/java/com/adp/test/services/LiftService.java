@@ -1,6 +1,5 @@
 package com.adp.test.services;
 
-import com.adp.test.models.Floor;
 import com.adp.test.models.Lift;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,26 +10,24 @@ public class LiftService {
     @Autowired
     Lift lift;
 
-    @Autowired
-    Floor floor;
-
-    public int askingForLift(Integer destinationFlor, String direction) {
-        return getFloorsToMove(destinationFlor, direction);
+    public Lift callLift(int floorFrom, int floorTo) {
+        return getFloorsToMove(floorFrom, floorTo);
     };
 
-    public Integer getFloorsToMove(Integer floorTo, String direction){
-        if(direction.equalsIgnoreCase("UP")){
-            return floorTo - lift.getCurrentFloor();
+    public Lift getFloorsToMove(int floorFrom, int floorTo){
+        int diffBetFloors = getDiffBetweenFloors(floorFrom, floorTo);
+        lift.setFloorsToMove(Math.abs(diffBetFloors));
+
+        if(diffBetFloors > 0){
+            lift.setDirection("UP");
+            return lift;
         }
-        return lift.getCurrentFloor() - floorTo;
+        lift.setDirection("DOWN");
+        return lift;
     };
 
-    String getLiftDirection(Integer floorsBetween) {
-        if(floorsBetween > 0) {
-            return "UP";
-        } else {
-            return "DOWN";
-        }
+    public int getDiffBetweenFloors(int floorFrom, int floorTo){
+        return floorTo - floorFrom;
     }
 
 }
